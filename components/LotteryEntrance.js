@@ -11,7 +11,7 @@ export default function LotteryEntrance() {
     const chainId = parseInt(chainIdHex)
     // console.log(`ChainId is ${chainId}`)
     const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
-
+    console.log(`contract : ${contractAddresses[chainId][0]}`)
     // State hooks
     // https://stackoverflow.com/questions/58252454/react-hooks-using-usestate-vs-just-variables
     const [entranceFee, setEntranceFee] = useState("0")
@@ -111,7 +111,7 @@ export default function LotteryEntrance() {
 
     return (
         <div className="p-5">
-            <h1 className="py-4 px-4 font-bold text-3xl">Lottery</h1>
+            <h1 className="py-4 px-4 font-bold text-3xl"> Lottery </h1>{" "}
             {raffleAddress ? (
                 <>
                     <button
@@ -126,19 +126,26 @@ export default function LotteryEntrance() {
                         }
                         disabled={isLoading || isFetching}
                     >
+                        {" "}
                         {isLoading || isFetching ? (
-                            <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
+                            <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full">
+                                {" "}
+                            </div>
                         ) : (
                             "Enter Raffle"
-                        )}
-                    </button>
-                    <div>Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH</div>
-                    <div>The current number of players is: {numberOfPlayers}</div>
-                    <div>The most previous winner was: {recentWinner}</div>
+                        )}{" "}
+                    </button>{" "}
+                    <div>
+                        {" "}
+                        Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")}
+                        ETH{" "}
+                    </div>{" "}
+                    <div> The current number of players is: {numberOfPlayers} </div>{" "}
+                    <div> The most previous winner was: {recentWinner} </div>{" "}
                 </>
             ) : (
-                <div>Please connect to a supported chain </div>
-            )}
+                <div> Please connect to a supported chain </div>
+            )}{" "}
         </div>
     )
 }
